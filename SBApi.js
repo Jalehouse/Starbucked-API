@@ -1,9 +1,24 @@
+/*
+// Requiring the world
+*/
 var express = require('express'),
     starbucks = require('./routes/starbucks'),
-    app = express();
+    sb = express();
 
-app.get('/starbucks', starbucks.findAll);
-app.get('/starbucks/:position', starbucks.findById);
+/*
+// Configuring Basics
+*/
+sb.configure(function () {
+    sb.use(express.logger('superman'));
+    sb.use(express.bodyParser());
+});
+
+/*
+// Earinating (listening)
+*/
+sb.get('/starbucks', starbucks.findAll);
+sb.get('/starbucks/:position', starbucks.findById);
  
-app.listen(3000);
+// Hello ThreeThousand 
+sb.listen(3000);
 console.log('Listening on port 3000...');
